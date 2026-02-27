@@ -7,7 +7,6 @@ const navLinks = [
   { label: "Auditions", href: "#auditions" },
   { label: "Countdown", href: "#countdown" },
   { label: "Register", href: "#registration" },
-  { label: "Contact", href: "#contact" },
 ];
 
 function scrollToSection(href: string) {

@@ -25,7 +25,7 @@ export default function LandingPage() {
         />
         <CountdownSection />
         <RegistrationSection />
-        <ContactSection eventInfo={eventInfo} />
+        <ContactSection />
       </main>
       <SoundToggle />
     </div>

@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 
-// Multiple fallback tracks — tries each in order until one works
-// Primary: Upbeat Party track from Pixabay (pixabay.com/music/dance-party-upbeat-upbeat-party-upbeat-music-party-488386/)
+// Primary: Amapiano Instrumentals 2025 PARTY beat, with Pixabay fallbacks
 const TRACK_URLS = [
+  "https://raw.githubusercontent.com/sumit3162/HackBot-v2.0/5332a1ab2c535cc6a224d3cfa68cd6fbbc0aa7f3/%5BFree%5D%20Amapiano%20Instrumentals%202025%20PARTY%20%20Rema%20x%20Seyi%20Vibes%20x%20Asake%20Type%20Beat.mp3",
   "https://cdn.pixabay.com/audio/2025/01/15/audio_f0e5ef4a93.mp3",
   "https://cdn.pixabay.com/audio/2024/12/09/audio_c4b2c97d95.mp3",
   "https://cdn.pixabay.com/audio/2022/10/25/audio_946b4f5e7e.mp3",
-  "https://assets.mixkit.co/music/preview/mixkit-hip-hop-02-738.mp3",
 ];
 
 export default function SoundToggle() {
