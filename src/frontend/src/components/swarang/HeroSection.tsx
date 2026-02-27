@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 
 export default function HeroSection() {
   const heroRef = useRef<HTMLElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const el = heroRef.current;
@@ -12,60 +11,6 @@ export default function HeroSection() {
       el.style.transition = "opacity 1.2s ease";
       el.style.opacity = "1";
     });
-  }, []);
-
-  // Particle canvas effect
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let animId: number;
-    const particles: { x: number; y: number; r: number; speed: number; angle: number; hue: number; alpha: number }[] = [];
-
-    const resize = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    for (let i = 0; i < 80; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 2.5 + 0.5,
-        speed: Math.random() * 0.4 + 0.1,
-        angle: Math.random() * Math.PI * 2,
-        hue: [280, 260, 330, 200][Math.floor(Math.random() * 4)],
-        alpha: Math.random() * 0.6 + 0.2,
-      });
-    }
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (const p of particles) {
-        p.x += Math.cos(p.angle) * p.speed;
-        p.y += Math.sin(p.angle) * p.speed;
-        p.angle += (Math.random() - 0.5) * 0.02;
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${p.hue}, 80%, 65%, ${p.alpha})`;
-        ctx.fill();
-      }
-      animId = requestAnimationFrame(draw);
-    };
-    draw();
-
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener("resize", resize);
-    };
   }, []);
 
   const scrollToRegister = () => {
@@ -85,56 +30,31 @@ export default function HeroSection() {
       className="relative w-full min-h-screen flex items-center justify-center overflow-hidden"
       style={{ background: "#000" }}
     >
-      {/* Particle canvas background */}
-      <div className="absolute inset-0 z-0 overflow-hidden" style={{ background: "radial-gradient(ellipse at 30% 40%, #0d0020 0%, #000 60%)" }}>
-        <canvas
-          ref={canvasRef}
-          className="absolute inset-0 w-full h-full"
-          style={{ opacity: 0.9 }}
-        />
-        {/* Stage light beams */}
-        <div className="absolute inset-0 pointer-events-none" style={{
-          background: "conic-gradient(from 200deg at 20% 0%, oklch(0.62 0.27 300 / 0.12) 0deg, transparent 40deg, oklch(0.56 0.24 262 / 0.08) 80deg, transparent 120deg)",
-        }} />
-        <div className="absolute inset-0 pointer-events-none" style={{
-          background: "conic-gradient(from 340deg at 80% 0%, oklch(0.66 0.27 340 / 0.12) 0deg, transparent 40deg, oklch(0.62 0.27 300 / 0.08) 80deg, transparent 120deg)",
-        }} />
-      </div>
-
-      {/* Cinematic dark overlay */}
-      <div
-        className="absolute inset-0 z-[1]"
-        style={{
-          background:
-            "linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.85) 100%)",
-        }}
-      />
-
-      {/* Animated ambient orbs */}
-      <div className="absolute inset-0 z-[2] overflow-hidden pointer-events-none">
+      {/* Neon ambient orbs background */}
+      <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none">
         <div
           style={{
             position: "absolute",
-            top: "20%",
-            left: "10%",
-            width: "40vw",
-            height: "40vw",
+            top: "15%",
+            left: "5%",
+            width: "50vw",
+            height: "50vw",
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, oklch(0.62 0.27 300 / 0.15) 0%, transparent 70%)",
+              "radial-gradient(circle, oklch(0.62 0.27 300 / 0.18) 0%, transparent 70%)",
             animation: "pulseOrb 6s ease-in-out infinite",
           }}
         />
         <div
           style={{
             position: "absolute",
-            bottom: "20%",
-            right: "10%",
-            width: "35vw",
-            height: "35vw",
+            bottom: "10%",
+            right: "5%",
+            width: "45vw",
+            height: "45vw",
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, oklch(0.56 0.24 262 / 0.15) 0%, transparent 70%)",
+              "radial-gradient(circle, oklch(0.56 0.24 262 / 0.18) 0%, transparent 70%)",
             animation: "pulseOrb 7s ease-in-out infinite 2s",
           }}
         />
@@ -143,13 +63,13 @@ export default function HeroSection() {
             position: "absolute",
             top: "50%",
             left: "50%",
-            width: "30vw",
-            height: "30vw",
             transform: "translate(-50%, -50%)",
+            width: "60vw",
+            height: "60vw",
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, oklch(0.66 0.27 340 / 0.1) 0%, transparent 70%)",
-            animation: "pulseOrb 8s ease-in-out infinite 1s",
+              "radial-gradient(circle, oklch(0.66 0.27 340 / 0.08) 0%, transparent 65%)",
+            animation: "pulseOrb 9s ease-in-out infinite 1s",
           }}
         />
       </div>

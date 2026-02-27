@@ -4,7 +4,8 @@ const categories = [
   {
     icon: "💃",
     name: "Dance",
-    description: "Showcase your moves — solo, duet, or group performances in any style.",
+    description:
+      "Showcase your moves — solo, duet, or group performances in any style.",
     color: "oklch(0.62 0.27 300)",
     borderColor: "oklch(0.62 0.27 300 / 0.35)",
     glow: "oklch(0.62 0.27 300 / 0.15)",
@@ -12,7 +13,8 @@ const categories = [
   {
     icon: "🎤",
     name: "Singing",
-    description: "Classical, folk, Bollywood, or indie — let your voice shine on stage.",
+    description:
+      "Classical, folk, Bollywood, or indie — let your voice shine on stage.",
     color: "oklch(0.66 0.27 340)",
     borderColor: "oklch(0.66 0.27 340 / 0.35)",
     glow: "oklch(0.66 0.27 340 / 0.15)",
@@ -20,7 +22,8 @@ const categories = [
   {
     icon: "🎸",
     name: "Music",
-    description: "Instrumentals, bands, fusion — music in all its forms and genres.",
+    description:
+      "Instrumentals, bands, fusion — music in all its forms and genres.",
     color: "oklch(0.56 0.24 262)",
     borderColor: "oklch(0.56 0.24 262 / 0.35)",
     glow: "oklch(0.56 0.24 262 / 0.15)",
@@ -42,22 +45,22 @@ export default function CategoriesSection() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
           }
-        });
+        }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     const els = [titleRef.current, ...cardsRef.current].filter(Boolean);
-    els.forEach((el) => {
+    for (const el of els) {
       if (el) {
         el.classList.add("reveal");
         observer.observe(el);
       }
-    });
+    }
 
     return () => observer.disconnect();
   }, []);
@@ -67,8 +70,7 @@ export default function CategoriesSection() {
       id="categories"
       className="relative py-24 px-4 sm:px-8"
       style={{
-        background:
-          "linear-gradient(180deg, #000 0%, #030010 50%, #000 100%)",
+        background: "linear-gradient(180deg, #000 0%, #030010 50%, #000 100%)",
       }}
     >
       {/* Background accent */}

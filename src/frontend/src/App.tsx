@@ -1,13 +1,12 @@
-import {
-  createRouter,
-  createRoute,
-  createRootRoute,
-  RouterProvider,
-  Outlet,
-} from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
+import {
+  Outlet,
+  RouterProvider,
+  createRootRoute,
+  createRoute,
+  createRouter,
+} from "@tanstack/react-router";
 import LandingPage from "./pages/LandingPage";
-import AdminPage from "./pages/AdminPage";
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -24,13 +23,7 @@ const indexRoute = createRoute({
   component: LandingPage,
 });
 
-const adminRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/admin",
-  component: AdminPage,
-});
-
-const routeTree = rootRoute.addChildren([indexRoute, adminRoute]);
+const routeTree = rootRoute.addChildren([indexRoute]);
 
 const router = createRouter({ routeTree });
 

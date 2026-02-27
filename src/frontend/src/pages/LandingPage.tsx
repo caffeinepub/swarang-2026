@@ -1,11 +1,11 @@
-import Navbar from "../components/swarang/Navbar";
-import HeroSection from "../components/swarang/HeroSection";
 import AboutSection from "../components/swarang/AboutSection";
-import CategoriesSection from "../components/swarang/CategoriesSection";
 import AuditionsSection from "../components/swarang/AuditionsSection";
-import CountdownSection from "../components/swarang/CountdownSection";
-import RegistrationSection from "../components/swarang/RegistrationSection";
+import CategoriesSection from "../components/swarang/CategoriesSection";
 import ContactSection from "../components/swarang/ContactSection";
+import CountdownSection from "../components/swarang/CountdownSection";
+import HeroSection from "../components/swarang/HeroSection";
+import Navbar from "../components/swarang/Navbar";
+import RegistrationSection from "../components/swarang/RegistrationSection";
 import SoundToggle from "../components/swarang/SoundToggle";
 import { useEventInfo } from "../hooks/useQueries";
 

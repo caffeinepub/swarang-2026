@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface TimeLeft {
   days: number;
@@ -73,21 +73,21 @@ export default function CountdownSection() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
           }
-        });
+        }
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
 
-    [titleRef.current, contentRef.current].forEach((el) => {
+    for (const el of [titleRef.current, contentRef.current]) {
       if (el) {
         el.classList.add("reveal");
         observer.observe(el);
       }
-    });
+    }
 
     return () => observer.disconnect();
   }, []);
@@ -128,8 +128,7 @@ export default function CountdownSection() {
       id="countdown"
       className="relative py-24 px-4 sm:px-8"
       style={{
-        background:
-          "linear-gradient(180deg, #000 0%, #050005 50%, #000 100%)",
+        background: "linear-gradient(180deg, #000 0%, #050005 50%, #000 100%)",
       }}
     >
       <div

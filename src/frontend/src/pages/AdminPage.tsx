@@ -1,21 +1,30 @@
-import { useState, useEffect } from "react";
-import { Link } from "@tanstack/react-router";
-import { toast } from "sonner";
-import { ArrowLeft, Save, Shield, Loader2, Link2, Info, LogIn, LogOut } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
+import { Link } from "@tanstack/react-router";
 import {
+  ArrowLeft,
+  Info,
+  Link2,
+  Loader2,
+  LogIn,
+  LogOut,
+  Save,
+  Shield,
+} from "lucide-react";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import type { EventInfo } from "../backend.d";
+import { useInternetIdentity } from "../hooks/useInternetIdentity";
+import {
+  useClaimAdmin,
   useEventInfo,
   useGoogleFormUrl,
   useIsAdmin,
   useSetGoogleFormUrl,
   useUpdateEventInfo,
-  useClaimAdmin,
 } from "../hooks/useQueries";
-import { useInternetIdentity } from "../hooks/useInternetIdentity";
-import type { EventInfo } from "../backend.d";
 
 export default function AdminPage() {
   const { login, clear, loginStatus, identity } = useInternetIdentity();
@@ -58,7 +67,9 @@ export default function AdminPage() {
       await setFormUrlMutation.mutateAsync(formUrlInput);
       toast.success("Google Form URL updated successfully");
     } catch {
-      toast.error("Failed to update form URL. Make sure you are logged in as admin.");
+      toast.error(
+        "Failed to update form URL. Make sure you are logged in as admin.",
+      );
     }
   };
 
@@ -67,7 +78,9 @@ export default function AdminPage() {
       await updateEventInfoMutation.mutateAsync(infoForm);
       toast.success("Event information updated successfully");
     } catch {
-      toast.error("Failed to update event info. Make sure you are logged in as admin.");
+      toast.error(
+        "Failed to update event info. Make sure you are logged in as admin.",
+      );
     }
   };
 
@@ -90,8 +103,14 @@ export default function AdminPage() {
           to="/"
           className="flex items-center gap-2 text-sm no-underline transition-colors duration-200"
           style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none" }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.9)"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.5)"; }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLAnchorElement).style.color =
+              "rgba(255,255,255,0.9)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLAnchorElement).style.color =
+              "rgba(255,255,255,0.5)";
+          }}
         >
           <ArrowLeft size={16} />
           Back to Site
@@ -113,7 +132,10 @@ export default function AdminPage() {
             size="sm"
             onClick={() => clear()}
             className="text-xs gap-1.5"
-            style={{ color: "rgba(255,255,255,0.4)", borderColor: "rgba(255,255,255,0.1)" }}
+            style={{
+              color: "rgba(255,255,255,0.4)",
+              borderColor: "rgba(255,255,255,0.1)",
+            }}
           >
             <LogOut size={14} />
             Logout
@@ -127,7 +149,11 @@ export default function AdminPage() {
             className="text-xs gap-1.5"
             style={{ color: "rgba(255,255,255,0.4)" }}
           >
-            {isLoggingIn ? <Loader2 size={14} className="animate-spin" /> : <LogIn size={14} />}
+            {isLoggingIn ? (
+              <Loader2 size={14} className="animate-spin" />
+            ) : (
+              <LogIn size={14} />
+            )}
             Login
           </Button>
         )}
@@ -165,7 +191,10 @@ export default function AdminPage() {
             <h2 className="font-display text-xl font-bold text-white mb-2">
               Authentication Required
             </h2>
-            <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,0.45)" }}>
+            <p
+              className="text-sm mb-6"
+              style={{ color: "rgba(255,255,255,0.45)" }}
+            >
               Please log in with Internet Identity to access the admin panel.
             </p>
             <Button
@@ -191,7 +220,11 @@ export default function AdminPage() {
             className="glass rounded-2xl p-8 mb-8 text-center"
             style={{ border: "1px solid rgba(255,255,255,0.08)" }}
           >
-            <Loader2 size={24} className="animate-spin mx-auto mb-3" style={{ color: "oklch(0.62 0.27 300)" }} />
+            <Loader2
+              size={24}
+              className="animate-spin mx-auto mb-3"
+              style={{ color: "oklch(0.62 0.27 300)" }}
+            />
             <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
               Verifying admin access...
             </p>
@@ -211,11 +244,18 @@ export default function AdminPage() {
             <h2 className="font-display text-xl font-bold text-white mb-2 text-center">
               Claim Admin Access
             </h2>
-            <p className="text-sm mb-6 text-center" style={{ color: "rgba(255,255,255,0.45)" }}>
+            <p
+              className="text-sm mb-6 text-center"
+              style={{ color: "rgba(255,255,255,0.45)" }}
+            >
               Enter the admin token to register your account as administrator.
             </p>
             <div className="space-y-3 max-w-sm mx-auto">
-              <Label htmlFor="adminToken" className="text-xs tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.45)" }}>
+              <Label
+                htmlFor="adminToken"
+                className="text-xs tracking-widest uppercase"
+                style={{ color: "rgba(255,255,255,0.45)" }}
+              >
                 Admin Token
               </Label>
               <Input
@@ -234,7 +274,10 @@ export default function AdminPage() {
                   if (e.key === "Enter" && adminToken.trim()) {
                     claimAdminMutation.mutate(adminToken.trim(), {
                       onSuccess: () => toast.success("Admin access granted!"),
-                      onError: () => toast.error("Invalid token. Please check and try again."),
+                      onError: () =>
+                        toast.error(
+                          "Invalid token. Please check and try again.",
+                        ),
                     });
                   }
                 }}
@@ -243,7 +286,8 @@ export default function AdminPage() {
                 onClick={() =>
                   claimAdminMutation.mutate(adminToken.trim(), {
                     onSuccess: () => toast.success("Admin access granted!"),
-                    onError: () => toast.error("Invalid token. Please check and try again."),
+                    onError: () =>
+                      toast.error("Invalid token. Please check and try again."),
                   })
                 }
                 disabled={claimAdminMutation.isPending || !adminToken.trim()}
@@ -285,18 +329,28 @@ export default function AdminPage() {
                   <h2 className="font-display text-lg font-black text-white">
                     Google Form URL
                   </h2>
-                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+                  <p
+                    className="text-xs"
+                    style={{ color: "rgba(255,255,255,0.4)" }}
+                  >
                     Set the registration form embed URL
                   </p>
                 </div>
               </div>
 
               <div className="space-y-3">
-                <Label htmlFor="formUrl" className="text-xs tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.45)" }}>
+                <Label
+                  htmlFor="formUrl"
+                  className="text-xs tracking-widest uppercase"
+                  style={{ color: "rgba(255,255,255,0.45)" }}
+                >
                   Google Form Embed URL
                 </Label>
                 {isLoadingUrl ? (
-                  <div className="h-10 rounded-lg animate-pulse" style={{ background: "rgba(255,255,255,0.05)" }} />
+                  <div
+                    className="h-10 rounded-lg animate-pulse"
+                    style={{ background: "rgba(255,255,255,0.05)" }}
+                  />
                 ) : (
                   <Textarea
                     id="formUrl"
@@ -312,8 +366,12 @@ export default function AdminPage() {
                     }}
                   />
                 )}
-                <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
-                  Use the Google Form embed URL (File → Embed → copy the src URL from the iframe code)
+                <p
+                  className="text-xs"
+                  style={{ color: "rgba(255,255,255,0.3)" }}
+                >
+                  Use the Google Form embed URL (File → Embed → copy the src URL
+                  from the iframe code)
                 </p>
               </div>
 
@@ -358,7 +416,10 @@ export default function AdminPage() {
                   <h2 className="font-display text-lg font-black text-white">
                     Event Information
                   </h2>
-                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+                  <p
+                    className="text-xs"
+                    style={{ color: "rgba(255,255,255,0.4)" }}
+                  >
                     Update event details shown on the landing page
                   </p>
                 </div>
@@ -367,18 +428,43 @@ export default function AdminPage() {
               {isLoadingInfo ? (
                 <div className="space-y-3">
                   {[1, 2, 3, 4].map((n) => (
-                    <div key={n} className="h-10 rounded-lg animate-pulse" style={{ background: "rgba(255,255,255,0.05)" }} />
+                    <div
+                      key={n}
+                      className="h-10 rounded-lg animate-pulse"
+                      style={{ background: "rgba(255,255,255,0.05)" }}
+                    />
                   ))}
                 </div>
               ) : (
                 <div className="space-y-4">
                   {(
                     [
-                      { id: "name", label: "Event Name", placeholder: "SWARANG 2026" },
-                      { id: "dates", label: "Event Dates", placeholder: "13–14 March 2026" },
-                      { id: "location", label: "Venue / Location", placeholder: "Swaminarayan Siddhanta Institute of Technology" },
-                      { id: "contactEmail", label: "Contact Email", placeholder: "swarang2026@ssit.edu.in" },
-                      { id: "contactPhone", label: "Contact Phone", placeholder: "+91 98765 43210" },
+                      {
+                        id: "name",
+                        label: "Event Name",
+                        placeholder: "SWARANG 2026",
+                      },
+                      {
+                        id: "dates",
+                        label: "Event Dates",
+                        placeholder: "13–14 March 2026",
+                      },
+                      {
+                        id: "location",
+                        label: "Venue / Location",
+                        placeholder:
+                          "Swaminarayan Siddhanta Institute of Technology",
+                      },
+                      {
+                        id: "contactEmail",
+                        label: "Contact Email",
+                        placeholder: "swarang2026@ssit.edu.in",
+                      },
+                      {
+                        id: "contactPhone",
+                        label: "Contact Phone",
+                        placeholder: "+91 98765 43210",
+                      },
                     ] as const
                   ).map((field) => (
                     <div key={field.id} className="space-y-1.5">
@@ -393,7 +479,10 @@ export default function AdminPage() {
                         id={field.id}
                         value={infoForm[field.id]}
                         onChange={(e) =>
-                          setInfoForm((prev) => ({ ...prev, [field.id]: e.target.value }))
+                          setInfoForm((prev) => ({
+                            ...prev,
+                            [field.id]: e.target.value,
+                          }))
                         }
                         placeholder={field.placeholder}
                         className="font-body text-sm"
@@ -418,7 +507,10 @@ export default function AdminPage() {
                       id="about"
                       value={infoForm.about}
                       onChange={(e) =>
-                        setInfoForm((prev) => ({ ...prev, about: e.target.value }))
+                        setInfoForm((prev) => ({
+                          ...prev,
+                          about: e.target.value,
+                        }))
                       }
                       placeholder="Describe the event..."
                       rows={4}

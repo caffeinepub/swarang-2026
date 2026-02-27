@@ -1,6 +1,6 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { useActor } from "./useActor";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import type { EventInfo } from "../backend.d";
+import { useActor } from "./useActor";
 
 export function useEventInfo() {
   const { actor, isFetching } = useActor();
@@ -88,7 +88,7 @@ export function useUpdateEventInfo() {
         info.location,
         info.about,
         info.contactEmail,
-        info.contactPhone
+        info.contactPhone,
       );
     },
     onSuccess: () => {

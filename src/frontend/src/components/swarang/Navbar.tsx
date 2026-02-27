@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -31,9 +30,7 @@ export default function Navbar() {
     <nav
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
-        background: scrolled
-          ? "rgba(0,0,0,0.85)"
-          : "rgba(0,0,0,0.3)",
+        background: scrolled ? "rgba(0,0,0,0.85)" : "rgba(0,0,0,0.3)",
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
         borderBottom: scrolled
@@ -68,35 +65,22 @@ export default function Navbar() {
                 type="button"
                 onClick={() => scrollToSection(link.href)}
                 className="font-body text-sm font-medium transition-colors duration-200 cursor-pointer border-0 bg-transparent outline-none"
-                style={{ color: "rgba(255,255,255,0.65)", letterSpacing: "0.05em" }}
+                style={{
+                  color: "rgba(255,255,255,0.65)",
+                  letterSpacing: "0.05em",
+                }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.color = "oklch(0.62 0.27 300)";
+                  (e.currentTarget as HTMLButtonElement).style.color =
+                    "oklch(0.62 0.27 300)";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.65)";
+                  (e.currentTarget as HTMLButtonElement).style.color =
+                    "rgba(255,255,255,0.65)";
                 }}
               >
                 {link.label}
               </button>
             ))}
-            <Link
-              to="/admin"
-              className="font-body text-xs font-medium px-3 py-1.5 rounded-full transition-all duration-200"
-              style={{
-                color: "rgba(255,255,255,0.35)",
-                border: "1px solid rgba(255,255,255,0.1)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.7)";
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.3)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.35)";
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.1)";
-              }}
-            >
-              Admin
-            </Link>
           </div>
 
           {/* Mobile hamburger */}
@@ -130,19 +114,14 @@ export default function Navbar() {
                 setIsOpen(false);
               }}
               className="text-left font-body text-sm py-2 border-0 bg-transparent outline-none cursor-pointer w-full"
-              style={{ color: "rgba(255,255,255,0.7)", letterSpacing: "0.05em" }}
+              style={{
+                color: "rgba(255,255,255,0.7)",
+                letterSpacing: "0.05em",
+              }}
             >
               {link.label}
             </button>
           ))}
-          <Link
-            to="/admin"
-            className="font-body text-xs py-2"
-            style={{ color: "rgba(255,255,255,0.35)" }}
-            onClick={() => setIsOpen(false)}
-          >
-            Admin Panel
-          </Link>
         </div>
       )}
     </nav>

@@ -1,5 +1,5 @@
+import { Mail, MapPin, Phone } from "lucide-react";
 import { useEffect, useRef } from "react";
-import { Mail, Phone, MapPin } from "lucide-react";
 import type { EventInfo } from "../../backend.d";
 
 interface Props {
@@ -13,21 +13,21 @@ export default function ContactSection({ eventInfo }: Props) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
           }
-        });
+        }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
-    [titleRef.current, ...itemsRef.current].filter(Boolean).forEach((el) => {
+    for (const el of [titleRef.current, ...itemsRef.current].filter(Boolean)) {
       if (el) {
         el.classList.add("reveal");
         observer.observe(el);
       }
-    });
+    }
 
     return () => observer.disconnect();
   }, []);
@@ -54,7 +54,8 @@ export default function ContactSection({ eventInfo }: Props) {
     {
       icon: <MapPin size={22} />,
       label: "Find Us",
-      value: eventInfo?.location || "Swaminarayan Siddhanta Institute of Technology",
+      value:
+        eventInfo?.location || "Swaminarayan Siddhanta Institute of Technology",
       href: `https://maps.google.com/?q=${encodeURIComponent(eventInfo?.location || "Swaminarayan Siddhanta Institute of Technology")}`,
       color: "oklch(0.66 0.27 340)",
       borderColor: "oklch(0.66 0.27 340 / 0.3)",
@@ -99,8 +100,14 @@ export default function ContactSection({ eventInfo }: Props) {
               key={item.label}
               href={item.href}
               target={item.href.startsWith("https") ? "_blank" : undefined}
-              rel={item.href.startsWith("https") ? "noopener noreferrer" : undefined}
-              ref={(el) => { if (el) itemsRef.current[i] = el as unknown as HTMLDivElement; }}
+              rel={
+                item.href.startsWith("https")
+                  ? "noopener noreferrer"
+                  : undefined
+              }
+              ref={(el) => {
+                if (el) itemsRef.current[i] = el as unknown as HTMLDivElement;
+              }}
               className={`reveal reveal-delay-${i + 1} glass glass-hover rounded-2xl p-6 flex flex-col items-start gap-3 no-underline`}
               style={{
                 border: `1px solid ${item.borderColor}`,
@@ -110,12 +117,18 @@ export default function ContactSection({ eventInfo }: Props) {
             >
               <div
                 className="w-10 h-10 rounded-full flex items-center justify-center"
-                style={{ background: `${item.color.replace(")", " / 0.15)")}`, color: item.color }}
+                style={{
+                  background: `${item.color.replace(")", " / 0.15)")}`,
+                  color: item.color,
+                }}
               >
                 {item.icon}
               </div>
               <div>
-                <p className="font-body text-xs tracking-widest uppercase mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>
+                <p
+                  className="font-body text-xs tracking-widest uppercase mb-1"
+                  style={{ color: "rgba(255,255,255,0.4)" }}
+                >
                   {item.label}
                 </p>
                 <p className="font-body text-sm font-medium text-white leading-snug">
@@ -145,21 +158,37 @@ export default function ContactSection({ eventInfo }: Props) {
               >
                 SWARANG 2026
               </p>
-              <p className="font-body text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>
-                Annual Cultural Festival • Swaminarayan Siddhanta Institute of Technology
+              <p
+                className="font-body text-xs mt-1"
+                style={{ color: "rgba(255,255,255,0.3)" }}
+              >
+                Annual Cultural Festival • Swaminarayan Siddhanta Institute of
+                Technology
               </p>
             </div>
-            <p className="font-body text-xs text-center" style={{ color: "rgba(255,255,255,0.25)" }}>
-              © {new Date().getFullYear()} SWARANG | Swaminarayan Siddhanta Institute of Technology.{" "}
-              <br className="sm:hidden" />
+            <p
+              className="font-body text-xs text-center"
+              style={{ color: "rgba(255,255,255,0.25)" }}
+            >
+              © {new Date().getFullYear()} SWARANG | Swaminarayan Siddhanta
+              Institute of Technology. <br className="sm:hidden" />
               Built with ♥ using{" "}
               <a
                 href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ color: "oklch(0.62 0.27 300 / 0.6)", textDecoration: "none" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "oklch(0.62 0.27 300)"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "oklch(0.62 0.27 300 / 0.6)"; }}
+                style={{
+                  color: "oklch(0.62 0.27 300 / 0.6)",
+                  textDecoration: "none",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "oklch(0.62 0.27 300)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "oklch(0.62 0.27 300 / 0.6)";
+                }}
               >
                 caffeine.ai
               </a>

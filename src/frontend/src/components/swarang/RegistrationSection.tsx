@@ -1,30 +1,50 @@
 import { useEffect, useRef } from "react";
-import { useGoogleFormUrl } from "../../hooks/useQueries";
-import { ExternalLink } from "lucide-react";
+
+const FORMS = [
+  {
+    label: "Anchoring",
+    emoji: "🎤",
+    directUrl: "https://forms.gle/EKXHHYuFGfwG3g167",
+    description: "Register for Anchoring / Hosting",
+  },
+  {
+    label: "Dance",
+    emoji: "💃",
+    directUrl:
+      "https://docs.google.com/forms/d/1gOUbnZ4OZV1f-rg2Xxnw04-53iWla74nwg8UhQhJSnA/viewform",
+    description: "Register for Dance competition",
+  },
+  {
+    label: "Singing",
+    emoji: "🎵",
+    directUrl:
+      "https://docs.google.com/forms/d/e/1FAIpQLSd9uvYADzhf1vgKk0AdHjTm_4MFNeYtfWnztBq3vcaujy9oRw/viewform",
+    description: "Register for Singing competition",
+  },
+];
 
 export default function RegistrationSection() {
-  const { data: formUrl, isLoading } = useGoogleFormUrl();
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
           }
-        });
+        }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
-    [titleRef.current, contentRef.current].forEach((el) => {
+    for (const el of [titleRef.current, cardsRef.current]) {
       if (el) {
         el.classList.add("reveal");
         observer.observe(el);
       }
-    });
+    }
 
     return () => observer.disconnect();
   }, []);
@@ -52,89 +72,73 @@ export default function RegistrationSection() {
           Register Now
         </h2>
         <p
-          className="font-body text-base mb-12"
+          className="font-body text-base mb-10"
           style={{ color: "rgba(255,255,255,0.45)" }}
         >
-          Fill out the form below to register for SWARANG 2026
+          Click on your category to open the registration form
         </p>
 
         <div
-          ref={contentRef}
-          className="reveal reveal-delay-1"
+          ref={cardsRef}
+          className="reveal reveal-delay-1 grid grid-cols-1 sm:grid-cols-3 gap-5"
         >
-          {isLoading ? (
-            <div
-              className="glass rounded-2xl h-64 flex items-center justify-center"
-              style={{ border: "1px solid rgba(255,255,255,0.08)" }}
-            >
-              <div className="flex flex-col items-center gap-3">
-                <div
-                  className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
-                  style={{ borderColor: "oklch(0.62 0.27 300)", borderTopColor: "transparent" }}
-                />
-                <span className="font-body text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>
-                  Loading form...
-                </span>
-              </div>
-            </div>
-          ) : formUrl && formUrl.trim() !== "" ? (
-            <div
-              className="glass rounded-2xl overflow-hidden"
+          {FORMS.map((form) => (
+            <a
+              key={form.label}
+              href={form.directUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass rounded-2xl p-8 flex flex-col items-center gap-4 no-underline cursor-pointer transition-all duration-300 group"
               style={{
                 border: "1px solid oklch(0.62 0.27 300 / 0.25)",
-                boxShadow: "0 0 40px oklch(0.62 0.27 300 / 0.1)",
+                boxShadow: "0 0 30px oklch(0.62 0.27 300 / 0.08)",
+                textDecoration: "none",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.boxShadow =
+                  "0 0 50px oklch(0.62 0.27 300 / 0.25)";
+                (e.currentTarget as HTMLAnchorElement).style.borderColor =
+                  "oklch(0.62 0.27 300 / 0.6)";
+                (e.currentTarget as HTMLAnchorElement).style.transform =
+                  "translateY(-4px)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.boxShadow =
+                  "0 0 30px oklch(0.62 0.27 300 / 0.08)";
+                (e.currentTarget as HTMLAnchorElement).style.borderColor =
+                  "oklch(0.62 0.27 300 / 0.25)";
+                (e.currentTarget as HTMLAnchorElement).style.transform =
+                  "translateY(0)";
               }}
             >
-              <iframe
-                src={formUrl}
-                width="100%"
-                height="800"
-                frameBorder="0"
-                marginHeight={0}
-                marginWidth={0}
-                title="SWARANG 2026 Registration Form"
-                style={{ display: "block" }}
-              >
-                Loading form...
-              </iframe>
-            </div>
-          ) : (
-            <div
-              className="glass rounded-2xl p-12 flex flex-col items-center justify-center text-center"
-              style={{
-                border: "1px solid oklch(0.62 0.27 300 / 0.2)",
-                boxShadow: "0 0 40px oklch(0.62 0.27 300 / 0.08)",
-                minHeight: 300,
-              }}
-            >
-              <div
-                className="text-6xl mb-5"
-                style={{ filter: "drop-shadow(0 0 20px oklch(0.62 0.27 300 / 0.5))" }}
-              >
-                📋
+              <span className="text-5xl">{form.emoji}</span>
+              <div className="text-center">
+                <p
+                  className="font-display font-black text-xl text-white mb-1"
+                  style={{ letterSpacing: "-0.01em" }}
+                >
+                  {form.label}
+                </p>
+                <p
+                  className="font-body text-xs"
+                  style={{ color: "rgba(255,255,255,0.4)" }}
+                >
+                  {form.description}
+                </p>
               </div>
-              <h3 className="font-display text-xl font-bold text-white mb-3">
-                Registration Coming Soon
-              </h3>
-              <p
-                className="font-body text-sm max-w-sm"
-                style={{ color: "rgba(255,255,255,0.45)" }}
-              >
-                The registration form will be available shortly. Check back soon or contact us for details.
-              </p>
-              <div
-                className="mt-6 px-5 py-2 rounded-full font-body text-xs tracking-widest uppercase flex items-center gap-2"
+              <span
+                className="font-body text-xs px-4 py-1.5 rounded-full mt-1"
                 style={{
-                  border: "1px solid oklch(0.62 0.27 300 / 0.3)",
-                  color: "oklch(0.62 0.27 300)",
-                  animation: "pulseNeon 2.5s ease-in-out infinite",
+                  background:
+                    "linear-gradient(135deg, oklch(0.62 0.27 300), oklch(0.56 0.24 262))",
+                  color: "#fff",
+                  boxShadow: "0 0 15px oklch(0.62 0.27 300 / 0.3)",
                 }}
               >
-                <ExternalLink size={14} />
-                Stay Tuned
-              </div>
-            </div>
-          )}
+                Register →
+              </span>
+            </a>
+          ))}
         </div>
       </div>
     </section>

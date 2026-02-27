@@ -13,22 +13,22 @@ export default function AboutSection({ eventInfo }: Props) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
           }
-        });
+        }
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
 
     const els = [titleRef.current, ...(itemsRef.current || [])].filter(Boolean);
-    els.forEach((el) => {
+    for (const el of els) {
       if (el) {
         el.classList.add("reveal");
         observer.observe(el);
       }
-    });
+    }
 
     return () => observer.disconnect();
   }, []);
@@ -81,7 +81,9 @@ export default function AboutSection({ eventInfo }: Props) {
               className="font-body text-sm mt-4"
               style={{ color: "rgba(255,255,255,0.4)" }}
             >
-              📍 {eventInfo?.location || "Swaminarayan Siddhanta Institute of Technology"}
+              📍{" "}
+              {eventInfo?.location ||
+                "Swaminarayan Siddhanta Institute of Technology"}
             </p>
             <p
               className="font-body text-sm mt-1"

@@ -1,5 +1,5 @@
+import { CalendarDays, CheckCircle, MapPin, Mic2 } from "lucide-react";
 import { useEffect, useRef } from "react";
-import { CalendarDays, MapPin, CheckCircle, Mic2 } from "lucide-react";
 
 interface Props {
   dates?: string;
@@ -21,22 +21,22 @@ export default function AuditionsSection({ dates, location }: Props) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
           }
-        });
+        }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     const els = [titleRef.current, ...itemsRef.current].filter(Boolean);
-    els.forEach((el) => {
+    for (const el of els) {
       if (el) {
         el.classList.add("reveal");
         observer.observe(el);
       }
-    });
+    }
 
     return () => observer.disconnect();
   }, []);
@@ -69,7 +69,9 @@ export default function AuditionsSection({ dates, location }: Props) {
           <div className="flex flex-col gap-5">
             {/* Auditions open */}
             <div
-              ref={(el) => { if (el) itemsRef.current[0] = el; }}
+              ref={(el) => {
+                if (el) itemsRef.current[0] = el;
+              }}
               className="reveal reveal-delay-1 glass rounded-2xl p-6 flex items-start gap-4"
               style={{
                 border: "1px solid oklch(0.62 0.27 300 / 0.3)",
@@ -83,13 +85,22 @@ export default function AuditionsSection({ dates, location }: Props) {
                 <Mic2 size={22} style={{ color: "oklch(0.62 0.27 300)" }} />
               </div>
               <div>
-                <p className="font-body text-xs tracking-widest uppercase mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>
+                <p
+                  className="font-body text-xs tracking-widest uppercase mb-1"
+                  style={{ color: "rgba(255,255,255,0.4)" }}
+                >
                   Status
                 </p>
-                <h3 className="font-display text-xl font-bold" style={{ color: "oklch(0.62 0.27 300)" }}>
+                <h3
+                  className="font-display text-xl font-bold"
+                  style={{ color: "oklch(0.62 0.27 300)" }}
+                >
                   Auditions Now Open
                 </h3>
-                <p className="font-body text-sm mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>
+                <p
+                  className="font-body text-sm mt-1"
+                  style={{ color: "rgba(255,255,255,0.5)" }}
+                >
                   Register and book your audition slot today
                 </p>
               </div>
@@ -97,7 +108,9 @@ export default function AuditionsSection({ dates, location }: Props) {
 
             {/* Event dates */}
             <div
-              ref={(el) => { if (el) itemsRef.current[1] = el; }}
+              ref={(el) => {
+                if (el) itemsRef.current[1] = el;
+              }}
               className="reveal reveal-delay-2 glass rounded-2xl p-6 flex items-start gap-4"
               style={{
                 border: "1px solid oklch(0.56 0.24 262 / 0.3)",
@@ -108,16 +121,25 @@ export default function AuditionsSection({ dates, location }: Props) {
                 className="shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
                 style={{ background: "oklch(0.56 0.24 262 / 0.15)" }}
               >
-                <CalendarDays size={22} style={{ color: "oklch(0.56 0.24 262)" }} />
+                <CalendarDays
+                  size={22}
+                  style={{ color: "oklch(0.56 0.24 262)" }}
+                />
               </div>
               <div>
-                <p className="font-body text-xs tracking-widest uppercase mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>
+                <p
+                  className="font-body text-xs tracking-widest uppercase mb-1"
+                  style={{ color: "rgba(255,255,255,0.4)" }}
+                >
                   Event Dates
                 </p>
                 <h3 className="font-display text-xl font-bold text-white">
                   {dates || "13–14 March 2026"}
                 </h3>
-                <p className="font-body text-sm mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>
+                <p
+                  className="font-body text-sm mt-1"
+                  style={{ color: "rgba(255,255,255,0.5)" }}
+                >
                   Two full days of performances
                 </p>
               </div>
@@ -125,7 +147,9 @@ export default function AuditionsSection({ dates, location }: Props) {
 
             {/* Venue */}
             <div
-              ref={(el) => { if (el) itemsRef.current[2] = el; }}
+              ref={(el) => {
+                if (el) itemsRef.current[2] = el;
+              }}
               className="reveal reveal-delay-3 glass rounded-2xl p-6 flex items-start gap-4"
               style={{
                 border: "1px solid oklch(0.66 0.27 340 / 0.3)",
@@ -139,7 +163,10 @@ export default function AuditionsSection({ dates, location }: Props) {
                 <MapPin size={22} style={{ color: "oklch(0.66 0.27 340)" }} />
               </div>
               <div>
-                <p className="font-body text-xs tracking-widest uppercase mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>
+                <p
+                  className="font-body text-xs tracking-widest uppercase mb-1"
+                  style={{ color: "rgba(255,255,255,0.4)" }}
+                >
                   Venue
                 </p>
                 <h3 className="font-display text-lg font-bold text-white">
@@ -151,13 +178,18 @@ export default function AuditionsSection({ dates, location }: Props) {
 
           {/* Rules card */}
           <div
-            ref={(el) => { if (el) itemsRef.current[3] = el; }}
+            ref={(el) => {
+              if (el) itemsRef.current[3] = el;
+            }}
             className="reveal reveal-delay-2 glass rounded-2xl p-7"
             style={{
               border: "1px solid rgba(255,255,255,0.08)",
             }}
           >
-            <h3 className="font-display text-xl font-black text-white mb-5" style={{ letterSpacing: "-0.01em" }}>
+            <h3
+              className="font-display text-xl font-black text-white mb-5"
+              style={{ letterSpacing: "-0.01em" }}
+            >
               Participation Rules
             </h3>
             <ul className="space-y-3">
@@ -168,7 +200,10 @@ export default function AuditionsSection({ dates, location }: Props) {
                     className="shrink-0 mt-0.5"
                     style={{ color: "oklch(0.62 0.27 300)" }}
                   />
-                  <span className="font-body text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
+                  <span
+                    className="font-body text-sm leading-relaxed"
+                    style={{ color: "rgba(255,255,255,0.65)" }}
+                  >
                     {rule}
                   </span>
                 </li>
