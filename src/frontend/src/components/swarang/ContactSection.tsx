@@ -28,36 +28,65 @@ export default function ContactSection() {
               style={{ color: "rgba(255,255,255,0.3)" }}
             >
               Annual Cultural Festival • Swaminarayan Siddhanta Institute of
-              Technology
+              Technology, Nagpur
             </p>
           </div>
-          <p
-            className="font-body text-xs text-center"
-            style={{ color: "rgba(255,255,255,0.25)" }}
-          >
-            © {new Date().getFullYear()} SWARANG | Swaminarayan Siddhanta
-            Institute of Technology. <br className="sm:hidden" />
-            Built with ♥ using{" "}
-            <a
-              href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: "oklch(0.62 0.27 300 / 0.6)",
-                textDecoration: "none",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.color =
-                  "oklch(0.62 0.27 300)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.color =
-                  "oklch(0.62 0.27 300 / 0.6)";
-              }}
+          <div className="flex flex-col items-center sm:items-end gap-1">
+            <p
+              className="font-body text-xs"
+              style={{ color: "rgba(255,255,255,0.35)" }}
             >
-              caffeine.ai
-            </a>
-          </p>
+              Made by{" "}
+              <a
+                href="https://www.instagram.com/sumit.shingne_?igsh=MTN3eTNsNDJ3YXhvYw=="
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "oklch(0.66 0.27 340 / 0.8)",
+                  textDecoration: "none",
+                  fontWeight: 600,
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "oklch(0.66 0.27 340)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "oklch(0.66 0.27 340 / 0.8)";
+                }}
+              >
+                Sumit Shingane
+              </a>{" "}
+              — Technical Head, E&TC Dept.
+            </p>
+            <p
+              className="font-body text-xs text-center"
+              style={{ color: "rgba(255,255,255,0.25)" }}
+            >
+              © {new Date().getFullYear()} SWARANG | Swaminarayan Siddhanta
+              Institute of Technology, Nagpur. <br className="sm:hidden" />
+              Built with ♥ using{" "}
+              <a
+                href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "oklch(0.62 0.27 300 / 0.6)",
+                  textDecoration: "none",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "oklch(0.62 0.27 300)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "oklch(0.62 0.27 300 / 0.6)";
+                }}
+              >
+                caffeine.ai
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

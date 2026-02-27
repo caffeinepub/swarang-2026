@@ -11,9 +11,9 @@ export function useEventInfo() {
         return {
           name: "SWARANG 2026",
           dates: "13–14 March 2026",
-          location: "Swaminarayan Siddhanta Institute of Technology",
+          location: "Swaminarayan Siddhanta Institute of Technology, Nagpur",
           about:
-            "SWARANG 2026 is the annual cultural extravaganza of Swaminarayan Siddhanta Institute of Technology. A celebration of talent, creativity, and performance arts — bringing together the best performers from across campus to showcase their skill in Dance, Singing, Music, and DJ.",
+            "SWARANG 2026 is the annual cultural extravaganza of Swaminarayan Siddhanta Institute of Technology, Nagpur. A celebration of talent, creativity, and performance arts — bringing together the best performers from across campus to showcase their skill in Dance, Singing, Music, and DJ.",
           contactEmail: "swarang2026@ssit.edu.in",
           contactPhone: "+91 98765 43210",
         };
@@ -23,10 +23,11 @@ export function useEventInfo() {
         name: result.name || "SWARANG 2026",
         dates: result.dates || "13–14 March 2026",
         location:
-          result.location || "Swaminarayan Siddhanta Institute of Technology",
+          result.location ||
+          "Swaminarayan Siddhanta Institute of Technology, Nagpur",
         about:
           result.about ||
-          "SWARANG 2026 is the annual cultural extravaganza of Swaminarayan Siddhanta Institute of Technology. A celebration of talent, creativity, and performance arts — bringing together the best performers from across campus to showcase their skill in Dance, Singing, Music, and DJ.",
+          "SWARANG 2026 is the annual cultural extravaganza of Swaminarayan Siddhanta Institute of Technology, Nagpur. A celebration of talent, creativity, and performance arts — bringing together the best performers from across campus to showcase their skill in Dance, Singing, Music, and DJ.",
         contactEmail: result.contactEmail || "swarang2026@ssit.edu.in",
         contactPhone: result.contactPhone || "+91 98765 43210",
       };

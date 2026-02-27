@@ -86,7 +86,7 @@ export default function HeroSection() {
             animation: "fadeInUp 0.8s ease 0.2s both",
           }}
         >
-          Swaminarayan Siddhanta Institute of Technology
+          Swaminarayan Siddhanta Institute of Technology, Nagpur
         </div>
 
         {/* Main title */}
@@ -182,7 +182,7 @@ export default function HeroSection() {
           }}
         >
           13–14 March 2026&nbsp;&nbsp;•&nbsp;&nbsp;Swaminarayan Siddhanta
-          Institute of Technology
+          Institute of Technology, Nagpur
         </p>
       </div>
 

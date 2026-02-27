@@ -170,7 +170,8 @@ export default function AuditionsSection({ dates, location }: Props) {
                   Venue
                 </p>
                 <h3 className="font-display text-lg font-bold text-white">
-                  {location || "Swaminarayan Siddhanta Institute of Technology"}
+                  {location ||
+                    "Swaminarayan Siddhanta Institute of Technology, Nagpur"}
                 </h3>
               </div>
             </div>

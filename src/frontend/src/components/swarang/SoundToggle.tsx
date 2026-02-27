@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
-// Primary: Amapiano Instrumentals 2025 PARTY beat, with Pixabay fallbacks
+// Primary: Dil Na Diya X Le Beta Meme Remix by DJ C2M, with Pixabay fallbacks
 const TRACK_URLS = [
+  "https://raw.githubusercontent.com/sumit3162/HackBot-v2.0/453183bb2cb5f375bb2c1e147dbab227c73a99a8/DIL%20NA%20DIYA%20X%20LE%20BETA%20MEME%20REMIX%20!!%20150%20BPM%20TROLL%20REMIX%20!!%20DJ%20C2M%20OFFICIAL.mp3",
   "https://raw.githubusercontent.com/sumit3162/HackBot-v2.0/5332a1ab2c535cc6a224d3cfa68cd6fbbc0aa7f3/%5BFree%5D%20Amapiano%20Instrumentals%202025%20PARTY%20%20Rema%20x%20Seyi%20Vibes%20x%20Asake%20Type%20Beat.mp3",
   "https://cdn.pixabay.com/audio/2025/01/15/audio_f0e5ef4a93.mp3",
   "https://cdn.pixabay.com/audio/2024/12/09/audio_c4b2c97d95.mp3",

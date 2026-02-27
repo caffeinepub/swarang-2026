@@ -453,7 +453,7 @@ export default function AdminPage() {
                         id: "location",
                         label: "Venue / Location",
                         placeholder:
-                          "Swaminarayan Siddhanta Institute of Technology",
+                          "Swaminarayan Siddhanta Institute of Technology, Nagpur",
                       },
                       {
                         id: "contactEmail",

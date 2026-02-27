@@ -35,7 +35,7 @@ export default function AboutSection({ eventInfo }: Props) {
 
   const aboutText =
     eventInfo?.about ||
-    "SWARANG 2026 is the annual cultural extravaganza of Swaminarayan Siddhanta Institute of Technology. A celebration of talent, creativity, and performance arts — bringing together the best performers from across campus to showcase their skill in Dance, Singing, Music, and DJ.";
+    "SWARANG 2026 is the annual cultural extravaganza of Swaminarayan Siddhanta Institute of Technology, Nagpur. A celebration of talent, creativity, and performance arts — bringing together the best performers from across campus to showcase their skill in Dance, Singing, Music, and DJ.";
 
   return (
     <section
@@ -83,7 +83,7 @@ export default function AboutSection({ eventInfo }: Props) {
             >
               📍{" "}
               {eventInfo?.location ||
-                "Swaminarayan Siddhanta Institute of Technology"}
+                "Swaminarayan Siddhanta Institute of Technology, Nagpur"}
             </p>
             <p
               className="font-body text-sm mt-1"

@@ -3,6 +3,7 @@ import AuditionsSection from "../components/swarang/AuditionsSection";
 import CategoriesSection from "../components/swarang/CategoriesSection";
 import ContactSection from "../components/swarang/ContactSection";
 import CountdownSection from "../components/swarang/CountdownSection";
+import HackathonSection from "../components/swarang/HackathonSection";
 import HeroSection from "../components/swarang/HeroSection";
 import Navbar from "../components/swarang/Navbar";
 import RegistrationSection from "../components/swarang/RegistrationSection";
@@ -25,6 +26,7 @@ export default function LandingPage() {
         />
         <CountdownSection />
         <RegistrationSection />
+        <HackathonSection />
         <ContactSection />
       </main>
       <SoundToggle />
