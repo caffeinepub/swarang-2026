@@ -1,0 +1,309 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* SWARANG 2026 – Pure Black + Neon Palette */
+    --background: 0 0 0;
+    --foreground: 0.97 0 0;
+
+    --card: 0.08 0 0;
+    --card-foreground: 0.97 0 0;
+
+    --popover: 0.08 0 0;
+    --popover-foreground: 0.97 0 0;
+
+    /* Primary: Neon Purple */
+    --primary: 0.62 0.27 300;
+    --primary-foreground: 0.97 0 0;
+
+    /* Secondary: Neon Blue */
+    --secondary: 0.56 0.24 262;
+    --secondary-foreground: 0.97 0 0;
+
+    /* Muted: Dark glass */
+    --muted: 0.12 0 0;
+    --muted-foreground: 0.65 0 0;
+
+    /* Accent: Neon Pink */
+    --accent: 0.66 0.27 340;
+    --accent-foreground: 0.97 0 0;
+
+    --destructive: 0.65 0.25 27;
+    --destructive-foreground: 0.97 0 0;
+
+    --border: 0.22 0 0;
+    --input: 0.18 0 0;
+    --ring: 0.62 0.27 300;
+
+    --chart-1: 0.62 0.27 300;
+    --chart-2: 0.56 0.24 262;
+    --chart-3: 0.66 0.27 340;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+
+    --sidebar: 0.08 0 0;
+    --sidebar-foreground: 0.97 0 0;
+    --sidebar-primary: 0.62 0.27 300;
+    --sidebar-primary-foreground: 0.97 0 0;
+    --sidebar-accent: 0.12 0 0;
+    --sidebar-accent-foreground: 0.97 0 0;
+    --sidebar-border: 0.22 0 0;
+    --sidebar-ring: 0.62 0.27 300;
+
+    /* Neon custom properties */
+    --neon-purple: oklch(0.62 0.27 300);
+    --neon-blue: oklch(0.56 0.24 262);
+    --neon-pink: oklch(0.66 0.27 340);
+    --neon-purple-raw: 0.62 0.27 300;
+    --neon-blue-raw: 0.56 0.24 262;
+    --neon-pink-raw: 0.66 0.27 340;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #000;
+    @apply text-foreground;
+    font-family: 'Sora', 'Outfit', 'Segoe UI', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* ─── Typography ─────────────────────────────────────────── */
+.font-display {
+  font-family: 'Cabinet Grotesk', 'Bricolage Grotesque', 'Sora', system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Neon Glow Text ─────────────────────────────────────── */
+.neon-text {
+  background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue), var(--neon-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.neon-text-purple {
+  color: var(--neon-purple);
+  text-shadow:
+    0 0 10px oklch(0.62 0.27 300 / 0.8),
+    0 0 30px oklch(0.62 0.27 300 / 0.5),
+    0 0 60px oklch(0.62 0.27 300 / 0.3);
+}
+
+.neon-text-blue {
+  color: var(--neon-blue);
+  text-shadow:
+    0 0 10px oklch(0.56 0.24 262 / 0.8),
+    0 0 30px oklch(0.56 0.24 262 / 0.5),
+    0 0 60px oklch(0.56 0.24 262 / 0.3);
+}
+
+.neon-text-pink {
+  color: var(--neon-pink);
+  text-shadow:
+    0 0 10px oklch(0.66 0.27 340 / 0.8),
+    0 0 30px oklch(0.66 0.27 340 / 0.5),
+    0 0 60px oklch(0.66 0.27 340 / 0.3);
+}
+
+/* ─── Glassmorphism ──────────────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-hover {
+  transition: all 0.3s ease;
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-4px);
+}
+
+/* ─── Neon Border Glow ───────────────────────────────────── */
+.neon-border-purple {
+  box-shadow:
+    0 0 20px oklch(0.62 0.27 300 / 0.3),
+    inset 0 0 20px oklch(0.62 0.27 300 / 0.05);
+  border-color: oklch(0.62 0.27 300 / 0.4) !important;
+}
+
+.neon-border-blue {
+  box-shadow:
+    0 0 20px oklch(0.56 0.24 262 / 0.3),
+    inset 0 0 20px oklch(0.56 0.24 262 / 0.05);
+  border-color: oklch(0.56 0.24 262 / 0.4) !important;
+}
+
+.neon-border-pink {
+  box-shadow:
+    0 0 20px oklch(0.66 0.27 340 / 0.3),
+    inset 0 0 20px oklch(0.66 0.27 340 / 0.05);
+  border-color: oklch(0.66 0.27 340 / 0.4) !important;
+}
+
+/* ─── Animated Neon Button ───────────────────────────────── */
+.btn-neon {
+  background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue), var(--neon-pink));
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+  box-shadow:
+    0 0 20px oklch(0.62 0.27 300 / 0.5),
+    0 0 40px oklch(0.62 0.27 300 / 0.3),
+    0 0 80px oklch(0.56 0.24 262 / 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-neon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-neon:hover::before {
+  opacity: 1;
+}
+
+.btn-neon:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow:
+    0 0 30px oklch(0.62 0.27 300 / 0.8),
+    0 0 60px oklch(0.62 0.27 300 / 0.5),
+    0 0 100px oklch(0.56 0.24 262 / 0.3);
+}
+
+/* ─── Keyframes ──────────────────────────────────────────── */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes bounceArrow {
+  0%, 100% { transform: translateY(0) translateX(-50%); }
+  50% { transform: translateY(10px) translateX(-50%); }
+}
+
+@keyframes pulseNeon {
+  0%, 100% {
+    box-shadow:
+      0 0 10px oklch(0.62 0.27 300 / 0.5),
+      0 0 20px oklch(0.62 0.27 300 / 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 20px oklch(0.62 0.27 300 / 0.9),
+      0 0 40px oklch(0.62 0.27 300 / 0.6),
+      0 0 60px oklch(0.66 0.27 340 / 0.4);
+  }
+}
+
+@keyframes pulseOrb {
+  0%, 100% { transform: scale(1); opacity: 0.15; }
+  50% { transform: scale(1.15); opacity: 0.25; }
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* ─── Scroll Reveal ──────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ─── Section title underline ────────────────────────────── */
+.section-title::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue), var(--neon-pink));
+  margin-top: 0.5rem;
+  transition: width 0.8s ease;
+  border-radius: 999px;
+}
+
+.section-title.visible::after {
+  width: 100%;
+}
+
+/* ─── Accordion ──────────────────────────────────────────── */
+@keyframes accordion-down {
+  from { height: 0 }
+  to { height: var(--radix-accordion-content-height) }
+}
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height) }
+  to { height: 0 }
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(0.62 0.27 300 / 0.5);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.62 0.27 300 / 0.8);
+}
